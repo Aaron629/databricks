@@ -1,0 +1,296 @@
+{
+  "datasets": [
+    {
+      "name": "34ec55a7",
+      "displayName": "category_summary_query",
+      "queryLines": [
+        "SELECT *\n",
+        "FROM default.order_category_summary"
+      ]
+    },
+    {
+      "name": "330d60ce",
+      "displayName": "time_trend_query",
+      "queryLines": [
+        "SELECT *\n",
+        "FROM default.order_time_summary\n",
+        "ORDER BY date"
+      ]
+    },
+    {
+      "name": "415a3020",
+      "displayName": "detail_query",
+      "queryLines": [
+        "SELECT *\n",
+        "FROM default.order_result"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "d8f336b3",
+      "displayName": "Untitled page",
+      "layout": [
+        {
+          "widget": {
+            "name": "1472830c",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "34ec55a7",
+                  "fields": [
+                    {
+                      "name": "category",
+                      "expression": "`category`"
+                    },
+                    {
+                      "name": "sum(total_amount)",
+                      "expression": "SUM(`total_amount`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "showTitle": true,
+                "showDescription": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "category",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(total_amount)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "3d7500e1",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "330d60ce",
+                  "fields": [
+                    {
+                      "name": "date",
+                      "expression": "`date`"
+                    },
+                    {
+                      "name": "sum(total_amount)",
+                      "expression": "SUM(`total_amount`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "showTitle": true,
+                "showDescription": true
+              },
+              "mark": {
+                "colors": [
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 4
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 2
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 3
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 4
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 5
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 6
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 7
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 8
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 9
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 10
+                  }
+                ]
+              },
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "date",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(total_amount)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 0,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "eb8e6c12",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "415a3020",
+                  "fields": [
+                    {
+                      "name": "id",
+                      "expression": "`id`"
+                    },
+                    {
+                      "name": "name",
+                      "expression": "`name`"
+                    },
+                    {
+                      "name": "category",
+                      "expression": "`category`"
+                    },
+                    {
+                      "name": "amount",
+                      "expression": "`amount`"
+                    },
+                    {
+                      "name": "date",
+                      "expression": "`date`"
+                    },
+                    {
+                      "name": "amount_with_tax",
+                      "expression": "`amount_with_tax`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "showDescription": true
+              },
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "id"
+                  },
+                  {
+                    "fieldName": "name"
+                  },
+                  {
+                    "fieldName": "category"
+                  },
+                  {
+                    "fieldName": "amount"
+                  },
+                  {
+                    "fieldName": "date"
+                  },
+                  {
+                    "fieldName": "amount_with_tax"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 2,
+            "y": 6,
+            "width": 7,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "4a4fc4f5",
+      "displayName": "Global Filters",
+      "layout": [
+        {
+          "widget": {
+            "name": "21cb2963",
+            "spec": {
+              "version": 2,
+              "widgetType": "filter-single-select",
+              "encodings": {},
+              "frame": {
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 2
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_GLOBAL_FILTERS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
