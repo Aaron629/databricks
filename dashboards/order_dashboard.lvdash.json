@@ -24,6 +24,14 @@
         "SELECT *\n",
         "FROM default.order_result"
       ]
+    },
+    {
+      "name": "2b012892",
+      "displayName": "total_revenue",
+      "queryLines": [
+        "SELECT SUM(amount) AS total_revenue\n",
+        "FROM default.order_result"
+      ]
     }
   ],
   "pages": [
@@ -41,12 +49,12 @@
                   "datasetName": "34ec55a7",
                   "fields": [
                     {
-                      "name": "category",
-                      "expression": "`category`"
-                    },
-                    {
                       "name": "sum(total_amount)",
                       "expression": "SUM(`total_amount`)"
+                    },
+                    {
+                      "name": "category",
+                      "expression": "`category`"
                     }
                   ],
                   "disaggregated": false
@@ -57,7 +65,8 @@
               "version": 3,
               "frame": {
                 "showTitle": true,
-                "showDescription": true
+                "showDescription": true,
+                "title": "營收狀況(類別區分)"
               },
               "widgetType": "bar",
               "encodings": {
@@ -68,6 +77,12 @@
                   }
                 },
                 "y": {
+                  "fieldName": "sum(total_amount)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
                   "fieldName": "sum(total_amount)",
                   "scale": {
                     "type": "quantitative"
@@ -109,13 +124,14 @@
               "version": 3,
               "frame": {
                 "showTitle": true,
-                "showDescription": true
+                "showDescription": true,
+                "title": "營收趨勢圖"
               },
               "mark": {
                 "colors": [
                   {
                     "themeColorType": "visualizationColors",
-                    "position": 4
+                    "position": 2
                   },
                   {
                     "themeColorType": "visualizationColors",
@@ -221,37 +237,94 @@
               "version": 2,
               "frame": {
                 "showTitle": true,
-                "showDescription": true
+                "showDescription": true,
+                "title": "銷售明細表"
+              },
+              "style": {
+                "fontColor": {
+                  "dark": "#A9D4DD"
+                }
               },
               "widgetType": "table",
               "encodings": {
                 "columns": [
                   {
-                    "fieldName": "id"
+                    "fieldName": "id",
+                    "displayName": "編號"
                   },
                   {
-                    "fieldName": "name"
+                    "fieldName": "name",
+                    "displayName": "名字"
                   },
                   {
-                    "fieldName": "category"
+                    "fieldName": "category",
+                    "displayName": "類別"
                   },
                   {
-                    "fieldName": "amount"
+                    "fieldName": "amount",
+                    "displayName": "價格"
                   },
                   {
-                    "fieldName": "date"
+                    "fieldName": "date",
+                    "displayName": "日期"
                   },
                   {
-                    "fieldName": "amount_with_tax"
+                    "fieldName": "amount_with_tax",
+                    "displayName": "價格(含稅)"
                   }
                 ]
+              }
+            },
+            "specExtensions": {
+              "widgetBorderColor": {
+                "dark": "#637B8F"
               }
             }
           },
           "position": {
-            "x": 2,
+            "x": 0,
             "y": 6,
-            "width": 7,
+            "width": 6,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "zong-ying-shou",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "2b012892",
+                  "fields": [
+                    {
+                      "name": "sum(total_revenue)",
+                      "expression": "SUM(`total_revenue`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "showDescription": true,
+                "title": "總營收"
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(total_revenue)"
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 6,
+            "width": 6,
             "height": 6
           }
         }
