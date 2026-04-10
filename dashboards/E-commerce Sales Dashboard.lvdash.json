@@ -1,0 +1,667 @@
+{
+  "datasets": [
+    {
+      "name": "d484ce57",
+      "displayName": "Daily Revenue Summary Report",
+      "queryLines": [
+        "SELECT \n",
+        "  DATE(created_at) AS date,\n",
+        "  SUM(total_amount) AS revenue\n",
+        "FROM mock_ecommerce_2000_rows\n",
+        "GROUP BY date\n",
+        "ORDER BY date"
+      ]
+    },
+    {
+      "name": "f17aa811",
+      "displayName": "Category Revenue Summary from Ecommerce Data",
+      "queryLines": [
+        "SELECT \n",
+        "  category,\n",
+        "  SUM(total_amount) AS revenue\n",
+        "FROM mock_ecommerce_2000_rows\n",
+        "GROUP BY category\n",
+        "ORDER BY revenue DESC"
+      ]
+    },
+    {
+      "name": "2d4fbc40",
+      "displayName": "City Revenue Insights",
+      "queryLines": [
+        "SELECT \n",
+        "  city,\n",
+        "  SUM(total_amount) AS revenue\n",
+        "FROM mock_ecommerce_2000_rows\n",
+        "GROUP BY city\n",
+        "ORDER BY revenue DESC"
+      ]
+    },
+    {
+      "name": "48046fc7",
+      "displayName": "Member Revenue Insights",
+      "queryLines": [
+        "SELECT \n",
+        "  is_member,\n",
+        "  SUM(total_amount) AS revenue\n",
+        "FROM mock_ecommerce_2000_rows\n",
+        "GROUP BY is_member"
+      ]
+    },
+    {
+      "name": "4b0fb0df",
+      "displayName": "Payment Method Insights and Revenue Analysis",
+      "queryLines": [
+        "SELECT \n",
+        "  payment_method,\n",
+        "  COUNT(*) AS orders,\n",
+        "  SUM(total_amount) AS revenue\n",
+        "FROM mock_ecommerce_2000_rows\n",
+        "GROUP BY payment_method"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "fe47a543",
+      "displayName": "Untitled page",
+      "layout": [
+        {
+          "widget": {
+            "name": "4b874214",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "d484ce57",
+                  "fields": [
+                    {
+                      "name": "monthly(date)",
+                      "expression": "DATE_TRUNC(\"MONTH\", `date`)"
+                    },
+                    {
+                      "name": "sum(revenue)",
+                      "expression": "SUM(`revenue`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "mark": {
+                "colors": [
+                  "#83BBCE",
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 2
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 3
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 4
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 5
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 6
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 7
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 8
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 9
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 10
+                  }
+                ]
+              },
+              "widgetType": "line",
+              "encodings": {
+                "x": {
+                  "fieldName": "monthly(date)",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(revenue)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 4,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "6c6237bb",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "f17aa811",
+                  "fields": [
+                    {
+                      "name": "category",
+                      "expression": "`category`"
+                    },
+                    {
+                      "name": "sum(revenue)",
+                      "expression": "SUM(`revenue`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "mark": {
+                "colors": [
+                  "#7187C7",
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 2
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 3
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 4
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 5
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 6
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 7
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 8
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 9
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 10
+                  }
+                ]
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "category",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(revenue)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "category",
+                  "scale": {
+                    "type": "categorical",
+                    "mappings": [
+                      {
+                        "value": "Beauty",
+                        "color": "#C484CA"
+                      },
+                      {
+                        "value": "Electronics",
+                        "color": "#C5A932"
+                      },
+                      {
+                        "value": "Fashion",
+                        "color": "#4E947E"
+                      },
+                      {
+                        "value": "Food",
+                        "color": "#F2695A"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 4,
+            "y": 0,
+            "width": 4,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "c0f77a44",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "2d4fbc40",
+                  "fields": [
+                    {
+                      "name": "city",
+                      "expression": "`city`"
+                    },
+                    {
+                      "name": "sum(revenue)",
+                      "expression": "SUM(`revenue`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "mark": {
+                "colors": [
+                  "#5AA4BB",
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 2
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 3
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 4
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 5
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 6
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 7
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 8
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 9
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 10
+                  }
+                ]
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "city",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(revenue)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "city",
+                  "scale": {
+                    "type": "categorical",
+                    "mappings": [
+                      {
+                        "value": "Hsinchu",
+                        "color": "#8D959A"
+                      },
+                      {
+                        "value": "New Taipei",
+                        "color": "#115A43"
+                      },
+                      {
+                        "value": "Taichung",
+                        "color": "#B8D284"
+                      },
+                      {
+                        "value": "Tainan",
+                        "color": "#88713E"
+                      },
+                      {
+                        "value": "Taipei",
+                        "color": "#91501F"
+                      },
+                      {
+                        "value": "Taoyuan",
+                        "color": "#EAD2BC"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 8,
+            "y": 0,
+            "width": 4,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "9ac9f56e",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "48046fc7",
+                  "fields": [
+                    {
+                      "name": "sum(revenue)",
+                      "expression": "SUM(`revenue`)"
+                    },
+                    {
+                      "name": "is_member",
+                      "expression": "`is_member`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "mark": {
+                "colors": [
+                  "#4B8491",
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 2
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 3
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 4
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 5
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 6
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 7
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 8
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 9
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 10
+                  }
+                ]
+              },
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "sum(revenue)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "is_member",
+                  "scale": {
+                    "type": "categorical",
+                    "mappings": [
+                      {
+                        "value": "Y",
+                        "color": "#3E4588"
+                      },
+                      {
+                        "value": "N",
+                        "color": "#501D80"
+                      }
+                    ]
+                  }
+                },
+                "label": {
+                  "show": true,
+                  "text": {
+                    "fieldName": "is_member"
+                  }
+                },
+                "extra": [
+                  {
+                    "fieldName": "is_member"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 6,
+            "height": 8
+          }
+        },
+        {
+          "widget": {
+            "name": "382a95e7",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "4b0fb0df",
+                  "fields": [
+                    {
+                      "name": "countdistinct(payment_method)",
+                      "expression": "COUNT(DISTINCT `payment_method`)"
+                    },
+                    {
+                      "name": "payment_method",
+                      "expression": "`payment_method`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "mark": {
+                "colors": [
+                  "#21669F",
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 2
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 3
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 4
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 5
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 6
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 7
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 8
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 9
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 10
+                  }
+                ]
+              },
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "countdistinct(payment_method)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "payment_method",
+                  "scale": {
+                    "type": "categorical",
+                    "mappings": [
+                      {
+                        "value": "Cash on Delivery",
+                        "color": {
+                          "themeColorType": "visualizationColors",
+                          "position": 8
+                        }
+                      },
+                      {
+                        "value": "Google Pay",
+                        "color": {
+                          "themeColorType": "visualizationColors",
+                          "position": 6
+                        }
+                      },
+                      {
+                        "value": "Bank Transfer",
+                        "color": "#FCA7D3"
+                      },
+                      {
+                        "value": "Apple Pay",
+                        "color": "#E3BDEE"
+                      },
+                      {
+                        "value": "Credit Card",
+                        "color": "#C09098"
+                      }
+                    ]
+                  }
+                },
+                "label": {
+                  "show": true,
+                  "text": {
+                    "fieldName": "payment_method"
+                  }
+                },
+                "extra": [
+                  {
+                    "fieldName": "payment_method"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 6,
+            "width": 6,
+            "height": 8
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "9091b96d",
+      "displayName": "Global Filters",
+      "layout": [
+        {
+          "widget": {
+            "name": "555494f6",
+            "spec": {
+              "version": 2,
+              "widgetType": "filter-single-select",
+              "encodings": {},
+              "frame": {
+                "showTitle": true
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 1,
+            "height": 2
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_GLOBAL_FILTERS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
