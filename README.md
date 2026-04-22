@@ -38,4 +38,4 @@ project-root/
 透過此專案建立：
 - Databricks + Git 開發流程
 - 基礎資料工程實作能力
-- 可擴展的資料處理架構test uat deploy
+- 可擴展的資料處理架構
