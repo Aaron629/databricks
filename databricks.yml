@@ -17,7 +17,7 @@ variables:
     description: The schema to use
 
 targets:
-  master:
+  main:
     mode: development
     default: true
     workspace:
