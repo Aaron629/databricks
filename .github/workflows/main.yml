@@ -32,7 +32,7 @@ jobs:
         run: pip install uv
 
       - name: Validate bundle
-        run: databricks bundle validate -t master
+        run: databricks bundle validate -t main
 
       - name: Deploy bundle
-        run: databricks bundle deploy -t master
+        run: databricks bundle deploy -t main
