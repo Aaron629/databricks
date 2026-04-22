@@ -1,0 +1,38 @@
+name: Deploy Databricks Bundle to main target
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy-master:
+    runs-on: ubuntu-latest
+
+    env:
+      DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST_MASTER }}
+      DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN_MASTER }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Databricks CLI
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
+          databricks -v
+
+      - name: Install uv
+        run: pip install uv
+
+      - name: Validate bundle
+        run: databricks bundle validate -t master
+
+      - name: Deploy bundle
+        run: databricks bundle deploy -t master
