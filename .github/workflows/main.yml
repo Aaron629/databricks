@@ -1,15 +1,13 @@
-name: Deploy Databricks Bundle
+name: Deploy Databricks Bundle to main target
 
 on:
   push:
     branches:
       - main
-      - uat
-      - prod
   workflow_dispatch:
 
 jobs:
-  deploy:
+  deploy-master:
     runs-on: ubuntu-latest
 
     env:
@@ -33,15 +31,8 @@ jobs:
       - name: Install uv
         run: pip install uv
 
-      - name: Set target from branch
-        id: set_target
-        run: |
-          BRANCH_NAME=${GITHUB_REF##*/}
-          echo "target=$BRANCH_NAME" >> $GITHUB_OUTPUT
-          echo "Deploy target is $BRANCH_NAME"
-
       - name: Validate bundle
-        run: databricks bundle validate -t ${{ steps.set_target.outputs.target }}
+        run: databricks bundle validate -t master
 
       - name: Deploy bundle
-        run: databricks bundle deploy -t ${{ steps.set_target.outputs.target }}
+        run: databricks bundle deploy -t master

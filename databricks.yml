@@ -5,6 +5,11 @@ bundle:
 include:
   - resources/*.yml
 
+artifacts:
+  python_artifact:
+    type: whl
+    build: uv build --wheel
+
 variables:
   catalog:
     description: The catalog to use
@@ -12,7 +17,7 @@ variables:
     description: The schema to use
 
 targets:
-  main:
+  master:
     mode: development
     default: true
     workspace:
